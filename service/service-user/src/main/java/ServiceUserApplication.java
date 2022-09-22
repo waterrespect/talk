@@ -1,4 +1,0 @@
-
-//@SpringBootApplication
-public class ServiceUserApplication {
-}

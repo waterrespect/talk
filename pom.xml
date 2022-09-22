@@ -7,13 +7,13 @@
         <module>common</module>
         <module>model</module>
         <module>service</module>
-        <module>service-gateway</module>
-        <module>service-user</module>
+
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+<!--        <version>2.7.3</version>-->
+        <version>2.2.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wang</groupId>
@@ -28,6 +28,8 @@
         <mysql.version>8.0.18</mysql.version>
         <swagger.version>2.7.0</swagger.version>
         <fastjson.version>1.2.29</fastjson.version>
+        <alibaba.version>2.2.0.RELEASE</alibaba.version>
+        <cloud.version>Hoxton.RELEASE</cloud.version>
     </properties>
 
     <!--配置dependencyManagement锁定依赖的版本-->
@@ -78,6 +80,22 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+<!--cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+<!--spring-cloud-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
 

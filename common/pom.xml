@@ -13,7 +13,38 @@
     <packaging>pom</packaging>
     <modules>
         <module>service-util</module>
+        <module>common-util</module>
+        <module>rabbit-util</module>
     </modules>
+
+    <dependencies>
+<!--spring-boot-starter-web-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided </scope>
+        </dependency>
+<!--lombok用来简化实体类：需要安装lombok插件-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+<!--swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+<!--swagger-ui-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+<!--fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>
