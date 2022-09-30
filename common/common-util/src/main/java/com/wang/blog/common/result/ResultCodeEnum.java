@@ -8,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 public enum ResultCodeEnum {
-
+    //  1、服务器
     SUCCESS(200,"成功"),
     FAIL(201, "失败"),
     PARAM_ERROR( 202, "参数不正确"),
@@ -36,13 +36,9 @@ public enum ResultCodeEnum {
     CANCEL_ORDER_FAIL(225, "取消失败"),
     CANCEL_ORDER_NO(225, "不能取消"),
 
-//    HOSCODE_EXIST(230, "医院编号已经存在"),
-//    NUMBER_NO(240, "可预约号不足"),
-//    TIME_NO(250, "当前时间不可以预约"),
-//
-//    SIGN_ERROR(300, "签名错误"),
-//    HOSPITAL_OPEN(310, "医院未开通，暂时不能访问"),
-//    HOSPITAL_LOCK(320, "医院被锁定，暂时不能访问"),
+    //  标签
+    LABEL_EXiST(300, "标签已存在"),
+    LABEL_USED(301, "标签已经被文章使用")
     ;
 
     private Integer code;

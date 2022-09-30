@@ -43,8 +43,9 @@ public class MsmApiController {
         //  2、获取不到=>生成验证码,通过整合短信服务发送,验证码放置到redis，并设置有效时间
         //  生成6位验证码
         code = RandomUtil.getSixBitRandom();
-        //
+        System.out.println("验证码 => " + code);
         boolean isSend = msmService.send(phone, code);
+        System.out.println("isSend => " +isSend);
         //  生成验证码，放到redis中
         if(isSend) {
             redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);

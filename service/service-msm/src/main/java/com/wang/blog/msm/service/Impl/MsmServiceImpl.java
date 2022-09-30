@@ -19,17 +19,21 @@ import java.util.Map;
 
 @Service
 public class MsmServiceImpl implements MsmService {
-
-    //  1、发送手机验证码
+    /**
+     * 1、发送手机验证码
+     * @param phone
+     * @param code
+     * @return
+     */
     @Override
     public boolean send(String phone, String code) {
         //  1、判断手机号是否为空
-        if(StringUtils.hasLength(phone)) {
+        if(!StringUtils.hasLength(phone)) {
             return false;
         }
         //  2、整合阿里云短信服务
-        IAcsClient client = the_client();
-        CommonRequest request = the_request(phone);
+        IAcsClient client = this.the_client();
+        CommonRequest request = this.the_request(phone);
         //验证码  使用json格式   {"code":"123456"}
         Map<String,Object> param = new HashMap();
         param.put("code",code);

@@ -11,7 +11,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
-* @descroption:
+* @descroption:用户信息
 * @author: Lw
 * @date: 2022/9/17
  * @param: null
@@ -20,7 +20,7 @@ import java.util.Date;
 
 @Data
 @ApiModel(description = "Guest")
-@TableName("guest")
+@TableName("user")
 public class Guest extends BaseEntity{
     private static final long serialVersionUID = 1L;
 

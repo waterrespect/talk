@@ -1,16 +1,13 @@
-package com.wang.blog.user;
+package com.wang.blog.label;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.wang"})
-//@EnableDiscoveryClient
-//@EnableFeignClients(basePackages = "com.wang")
-public class ServiceUserApplication {
+public class ServiceLabelApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ServiceUserApplication.class, args);
+        SpringApplication.run(ServiceLabelApplication.class, args);
     }
 }
