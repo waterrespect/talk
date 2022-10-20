@@ -38,7 +38,10 @@ public enum ResultCodeEnum {
 
     //  标签
     LABEL_EXiST(300, "标签已存在"),
-    LABEL_USED(301, "标签已经被文章使用")
+    LABEL_USED(301, "标签已经被文章使用"),
+
+    //  文章
+    UN_EXIST(235, "文章不存在")
     ;
 
     private Integer code;

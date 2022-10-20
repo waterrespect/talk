@@ -15,14 +15,14 @@ public class Label extends BaseEntity {
 
     @ApiModelProperty(value = "标签名称")
     @TableField("label_name")
-    private String label_name;
+    private String labelName;
 
     @ApiModelProperty(value = "标签别名")
     @TableField("label_alias")
-    private String label_alias;
+    private String labelAlias;
 
     @ApiModelProperty(value = "标签描述")
     @TableField("label_description")
-    private String label_description;
+    private String labelDescription;
 
 }

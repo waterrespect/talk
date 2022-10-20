@@ -8,13 +8,15 @@
         <module>model</module>
         <module>service</module>
         <module>service_gateway</module>
+<!--        <module>service-ml</module>-->
+<!--        <module>service-article</module>-->
 
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
-<!--        <version>2.2.1.RELEASE</version>-->
+<!--        <version>2.7.3</version>-->
+        <version>2.2.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wang</groupId>
@@ -34,6 +36,7 @@
         <jwt.version>0.7.0</jwt.version>
         <httpclient.version>4.5.1</httpclient.version>
         <jodatime.version>2.10.1</jodatime.version>
+        <mail.version>2.2.1.RELEASE</mail.version>
     </properties>
 
     <!--配置dependencyManagement锁定依赖的版本-->
@@ -121,6 +124,12 @@
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>${jodatime.version}</version>
+            </dependency>
+<!--邮箱工具-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-mail</artifactId>
+                <version>${mail.version}</version>
             </dependency>
         </dependencies>
 

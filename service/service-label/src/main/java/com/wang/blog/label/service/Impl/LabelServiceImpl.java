@@ -50,7 +50,7 @@ public class LabelServiceImpl extends ServiceImpl<LabelMapper, Label> implements
         //  1、查询
         Label existLabel = baseMapper.selectOne(new LambdaQueryWrapper<Label>()
                 .select(Label::getId)
-                .eq(Label::getLabel_name, labelVo.getLabel_name()));//通过名字查询
+                .eq(Label::getLabelName, labelVo.getLabel_name()));//通过名字查询
         System.out.println("label => " + existLabel);
         if (Objects.nonNull(existLabel) && !existLabel.getId().equals(labelVo.getId())) {// 存在、id相同
             throw new BlogException(ResultCodeEnum.LABEL_EXiST); // 标签已存在

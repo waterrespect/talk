@@ -16,6 +16,8 @@
         <module>service-msm</module>
         <module>service-oss</module>
         <module>service-label</module>
+        <module>service-ml</module>
+        <module>service-article</module>
     </modules>
 
     <dependencies>

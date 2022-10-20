@@ -38,5 +38,6 @@ public class GuestController {
                        @PathVariable Integer status) {
         guestService.lock(userId, status);
         return Result.ok();
+        
     }
 }

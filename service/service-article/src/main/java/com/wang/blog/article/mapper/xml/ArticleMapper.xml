@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.blog.article.mapper.ArticleMapper">
+<!--返回map-->
+    <resultMap id="articleBackResultMap" type="com.wang.blog.dto.article.ArticleHomeDTO">
+        <id column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="article_title" property="articleTitle"/>
+        <result column="article_views" property="articleViews"/>
+        <result column="article_comment_count" property="articleCommentCount"/>
+        <result column="article_like_count" property="articleLikeCount"/>
+        <result column="article_cover" property="articleCover"/>
+        <result column="type" property="type"/>
+        <result column="original_url" property="originalUrl"/>
+        <result column="status" property="status"/>
+        <!--分类名字通过id获取-->
+        <result column="sort_name" property="categoryName"/>
+        <collection property="userDTOList" ofType="com.wang.blog.dto.user.UserDTO">
+            <id column="user_id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="phone" property="phone"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="articleResultMap" type="com.wang.blog.dto.article.ArticleDTO">
+        <id column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="article_title" property="articleTitle"/>
+        <result column="article_content" property="articleContent"/>
+        <result column="article_content_html" property="articleContentHtml"/>
+        <result column="article_views" property="articleViews"/>
+        <result column="article_comment_count" property="articleCommentCount"/>
+        <result column="article_like_count" property="articleLikeCount"/>
+        <result column="article_cover" property="articleCover"/>
+        <result column="type" property="type"/>
+        <result column="original_url" property="originalUrl"/>
+        <result column="status" property="status"/>
+        <!--分类名字通过id获取-->
+        <result column="sort_name" property="categoryName"/>
+        <collection property="userDTOList" ofType="com.wang.blog.dto.user.UserDTO">
+            <id column="user_id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="profile_photo" property="profilePhoto"/>
+            <result column="create_time" property="createTime"/>
+        </collection>
+    </resultMap>
+
+<!--文章条件检索返回列表-->
+    <select id="listArticleBacks" resultMap="articleBackResultMap">
+        SELECT a.id, a.create_time, a.update_time, article_title, a.article_views, a.article_comment_count, a.article_like_count,
+               a.article_cover, a.type, a.original_url, a.status, c.sort_name AS sort_name, u.id AS user_id, u.name
+        FROM (
+            SELECT  id, create_time, update_time, is_deleted, user_id, article_title, article_views, article_comment_count,
+                   article_like_count, article_cover, category_id, type, original_url, status
+            FROM article
+            <where>
+                is_deleted = #{articleVo.isDeleted}
+                <if test="articleVo.articleTitle != null">
+                    and article_title like concat('%', #{articleVo.articleTitle}, '#')
+                </if>
+                <if test="articleVo.articleContent != null">
+                    and article_content like concat('%', #{articleVo.articleContent}, '#')
+                </if>
+                <if test="articleVo.categoryId != null">
+                    and category_id = #{articleVo.articleId}
+                </if>
+                <if test="articleVo.type != null">
+                    and type = #{articleVo.type}
+                </if>
+                <if test="articleVo.status != null">
+                    and status = #{articleVo.status}
+                </if>
+                <if test="articleVo.createTimeBegin != null">
+                    and create_time &gt;= #{articleVo.createTimeBegin}
+                </if>
+                <if test="articleVo.CreateTimeEnd != null">
+                    and create_time &lt;= #{articleVo.CreateTimeEnd}
+                </if>
+            </where>
+            order by create_time DESC
+            limit #{current}, #{size}
+        ) a
+            # 1、只进行文章检索 用户信息/分类信息一起返回
+            LEFT JOIN sorts c ON a.category_id = c.id   #加入分类
+            LEFT JOIN user u ON a.user_id = u.id
+            order by create_time DESC
+    </select>
+
+    <select id="articleById" resultMap="articleResultMap">
+        SELECT a.id, a.create_time, a.update_time, article_title, article_content, article_content_html,a.article_views, a.article_comment_count, a.article_like_count,
+        a.article_cover, a.type, a.original_url, a.status, c.sort_name AS sort_name, u.id AS user_id, u.name, u.profile_photo AS profile_photo,
+        u.create_time AS user_create_time
+        FROM (
+        SELECT  id, create_time, update_time, is_deleted, user_id, article_title, article_content, article_content_html, article_views, article_comment_count,
+        article_like_count, article_cover, category_id, type, original_url, status
+        FROM article
+        <where>
+            id = #{id}
+        </where>
+        order by create_time DESC
+        ) a
+        # 1、只进行文章检索 用户信息/分类信息一起返回
+        LEFT JOIN sorts c ON a.category_id = c.id   #加入分类
+        LEFT JOIN user u ON a.user_id = u.id
+    </select>
+
+    <select id="list" resultType="com.wang.blog.dto.article.ArticleDTO">
+        select *
+        from    article
+        where id = #{id}
+    </select>
+</mapper>
